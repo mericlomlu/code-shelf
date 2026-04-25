@@ -8,7 +8,7 @@
  * @returns Whether the given number is valid, according to the algorithm.
  */
 
-export const validateTckn = (tckn: string): boolean => {
+export const validateTurkishIdNumber = (tckn: string): boolean => {
     if (tckn.length !== 11 || !/^\d+$/.test(tckn)) {
         return false;
     }

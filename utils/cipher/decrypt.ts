@@ -1,5 +1,5 @@
 /**
- * Decrypts a base64-encoded AES-256-GCM ciphertext produced by `encryptValue`.
+ * Decrypts a base64-encoded AES-256-GCM ciphertext produced by `encrypt`.
  *
  * Reads the 12-byte IV from the front of the payload, then decrypts the remaining
  * ciphertext. AES-GCM is authenticated — if the ciphertext was tampered with or
@@ -8,24 +8,24 @@
  * Requires the Web Crypto API — available in all modern browsers and Next.js
  * (Node.js 16+) without any additional packages.
  *
- * @param {string} encryptedValue - Base64-encoded string produced by `encryptValue`
+ * @param {string} encrypted - Base64-encoded string produced by `encrypt`
  * @returns {Promise<string>} The original plain text string
  * @throws {DOMException} If the ciphertext is invalid, corrupted, or the key is wrong
  *
  * @example
  * // Basic usage
- * const plain = await decryptValue(encrypted);
+ * const plain = await decrypt(encrypted);
  *
  * @example
  * // Read and decrypt a stored token
  * const encrypted = localStorage.getItem('token');
- * const token = encrypted ? await decryptValue(encrypted) : null;
+ * const token = encrypted ? await decrypt(encrypted) : null;
  */
 
 const ENCRYPTION_KEY = '********************************'; // Replace with process.env.ENCRYPTION_KEY — must be exactly 32 characters (AES-256)
 
-export async function decryptValue(encryptedValue: string): Promise<string> {
-    const combined = Uint8Array.from(atob(encryptedValue), c => c.charCodeAt(0));
+export async function decrypt(encrypted: string): Promise<string> {
+    const combined = Uint8Array.from(atob(encrypted), c => c.charCodeAt(0));
     const iv = combined.slice(0, 12);
     const ciphertext = combined.slice(12);
 

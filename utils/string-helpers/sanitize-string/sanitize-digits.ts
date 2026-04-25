@@ -12,4 +12,4 @@
  * sanitizeNumber('abc123def') // '123'
  * sanitizeNumber('no digits here') // ''
  */
-export const sanitizeNumber = (value: string): string => value.replace(/\D/g, '');
+export const sanitizeDigits = (value: string): string => value.replace(/\D/g, '');

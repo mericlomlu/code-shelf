@@ -13,17 +13,17 @@
  *
  * @example
  * // Basic usage
- * const encrypted = await encryptValue('sensitive data');
+ * const encrypted = await encrypt('sensitive data');
  *
  * @example
  * // Store an encrypted token in localStorage
- * const encrypted = await encryptValue(token);
+ * const encrypted = await encrypt(token);
  * localStorage.setItem('token', encrypted);
  */
 
 const ENCRYPTION_KEY = '********************************'; // Replace with process.env.ENCRYPTION_KEY — must be exactly 32 characters (AES-256)
 
-export async function encryptValue(value: string): Promise<string> {
+export async function encrypt(value: string): Promise<string> {
     const key = await crypto.subtle.importKey(
         'raw',
         new TextEncoder().encode(ENCRYPTION_KEY),

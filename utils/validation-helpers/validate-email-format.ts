@@ -9,5 +9,5 @@
  * @returns A boolean indicating whether the email address is valid.
  */
 
-export const validateEmail = (email: string): boolean =>
+export const validateEmailFormat = (email: string): boolean =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
